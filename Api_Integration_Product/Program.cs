@@ -1,10 +1,12 @@
 
 using Api_Integration_Product.Data;
 using Api_Integration_Product.Services.AuthServices;
+using Api_Integration_Product.Services.ProductServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using Scalar.AspNetCore;
 using System.Text;
 
@@ -21,6 +23,7 @@ namespace Api_Integration_Product
                 options.UseSqlServer(builder.Configuration.GetConnectionString("myConnection"))
             );
 
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             // Configuration Jwt
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -42,6 +45,7 @@ namespace Api_Integration_Product
 
             // Add services to the container.
             builder.Services.AddScoped<IAuthService,AuthService>();
+            builder.Services.AddScoped<IProductService,ProductService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
