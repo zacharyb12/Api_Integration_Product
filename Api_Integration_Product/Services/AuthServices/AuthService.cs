@@ -47,6 +47,7 @@ namespace Api_Integration_Product.Services.AuthServices
             if(u == null || !BCrypt.Net.BCrypt.Verify(form.Password,u.PasswordHash))
             {
                 throw new UnauthorizedAccessException("Email ou mot de passe invalide");
+                //throw new Exception();
             }
 
             return BuildResponse(u);

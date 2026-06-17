@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Scalar.AspNetCore;
 using System.Text;
+using Api_Integration_Product.Middlewares;
 
 namespace Api_Integration_Product
 {
@@ -60,6 +61,8 @@ namespace Api_Integration_Product
             });
 
             var app = builder.Build();
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

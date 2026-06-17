@@ -21,7 +21,7 @@ namespace Api_Integration_Product.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> Create([FromBody]CreateProductDto newProduct)
         {
             try

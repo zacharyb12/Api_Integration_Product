@@ -1,0 +1,20 @@
+name: CI                          # nom affiché dans l'onglet Actions
+
+on:                               # QUAND déclencher
+  push:
+    branches: [main, develop]
+  pull_request:
+
+jobs:                             # liste des jobs
+  build-test:                     # nom du job (libre)
+    runs-on: ubuntu-latest        # OÙ : machine fournie par GitHub
+    steps:                        # les étapes, dans l'ordre
+      - uses: actions/checkout@v4         # 1. récupère ton code
+
+      - uses: actions/setup-dotnet@v4     # 2. installe le SDK .NET
+        with:
+          dotnet-version: '10.0.x'
+
+      - run: dotnet restore               # 3. télécharge les packages NuGet
+      - run: dotnet build --no-restore -c Release   # 4. compile
+      - run: dotnet test --no-build -c Release      # 5. lance tes tests
