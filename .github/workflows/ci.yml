@@ -2,7 +2,7 @@ name: CI                          # nom affiché dans l'onglet Actions
 
 on:                               # QUAND déclencher
   push:
-    branches: [main, develop]
+    branches: [master,main, develop]
   pull_request:
 
 jobs:                             # liste des jobs
