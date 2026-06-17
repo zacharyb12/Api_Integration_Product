@@ -15,6 +15,7 @@ namespace Api_Integration_Product.Services.AuthServices
         // Register
         public async Task<AuthResponseDTO> RegisterAsync(RegisterDTO form)
         {
+            Console.WriteLine("hello");
             if(await _context.Users.AnyAsync(u => u.Email == form.Email))
             {
                 throw new InvalidOperationException("Email déja utilisé!");
